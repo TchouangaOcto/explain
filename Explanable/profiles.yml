@@ -1,0 +1,12 @@
+octopeek:
+  target: Explanable
+  outputs:
+    dev:
+      type: postgres
+      host: localhost
+      user: postgres
+      password: 0000
+      port: 5432
+      dbname: warehouse
+      schema: dbt_octopeek
+      threads: 4
