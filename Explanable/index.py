@@ -106,9 +106,12 @@ page_style={
 
 # obtention du contenu du logo
 log.info('obtention du contenu du logo')
-fichier_image = 'Explanable\logo.png'
+fichier_image = 'Explanable/logo.png'
 repertiore_image = os.path.join(current_dir, fichier_image)
-encoded_image = base64.b64encode(open(repertiore_image, 'rb').read()).decode('ascii')
+try:
+    encoded_image = base64.b64encode(open(repertiore_image, 'rb').read()).decode('ascii')
+except Exception as e:
+    log.error(e)
 
 # App Layout
 log.info('chargement de la page acceuille web')
@@ -321,6 +324,6 @@ def render_card(variable_à_prédire,checklist_explain, Explanabilité_methdode)
 log.info('lancement du serveur dash')
 if __name__ == '__main__':
     try:
-        app.run_server(debug=True,  port=8080)
+        app.run_server(host='0.0.0.0', port=8080, debug=True)
     except Exception as e:
         log.error(e)

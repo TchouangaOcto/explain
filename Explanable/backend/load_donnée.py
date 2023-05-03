@@ -101,7 +101,7 @@ try:
         database="postgres",
         user='postgres',
         password='0000',
-        host='localhost',
+        host='database',
         port='5432'
     )
 except Exception as e:
@@ -158,7 +158,7 @@ def update_metadata(filename,contenu,date,sql):
             database="postgres",
             user='postgres',
             password='0000',
-            host='localhost',
+            host='database',
             port='5432'
         )
     except Exception as e:

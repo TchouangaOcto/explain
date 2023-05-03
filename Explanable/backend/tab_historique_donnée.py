@@ -63,15 +63,17 @@ try:
         database="postgres",
         user='postgres',
         password='0000',
-        host='localhost',
+        host='database',
         port='5432'
     )
 except Exception as e:
     log.error(e)
 sql = "SELECT date, fichier FROM metadata_donnée_v2;"
 log.info('recuperation des données de la base')
-df = pd.read_sql(sql,conn)
-print(df)
+try:
+    df = pd.read_sql(sql,conn)
+except Exception as e:
+    log.error(e)
 
 # layout
 layout = html.Div([dash_table.DataTable(

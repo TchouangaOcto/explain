@@ -21,7 +21,7 @@ try:
         database="postgres",
         user='postgres',
         password='0000',
-        host='localhost',
+        host='database',
         port='5432'
     )
 except Exception as e:
@@ -31,7 +31,8 @@ except Exception as e:
 command1 = '''
         CREATE TABLE IF NOT EXISTS metadata_donnée_v2  (
             date VARCHAR(255),
-            fichier  VARCHAR(255)
+            fichier  VARCHAR(255),
+            contenu text
         );
         '''
 
@@ -39,7 +40,10 @@ command1 = '''
 command2 = '''
         CREATE TABLE IF NOT EXISTS metadata_modèle  (
             date VARCHAR(255),
-            fichier  VARCHAR(255)
+            fichier  VARCHAR(255),
+            model VARCHAR(255),
+            hyperparametre text,
+            contenu text
         );
         '''
 

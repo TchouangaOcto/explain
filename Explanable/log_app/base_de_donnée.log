@@ -1,0 +1,38 @@
+05/02/2023/ 12:26:51 PM - [create_db.py:18] - INFO: connection avec le serveur postgres
+05/02/2023/ 12:26:51 PM - [create_db.py:27] - ERROR: could not connect to server: Connection refused
+	Is the server running on host "localhost" (127.0.0.1) and accepting
+	TCP/IP connections on port 5432?
+could not connect to server: Cannot assign requested address
+	Is the server running on host "localhost" (::1) and accepting
+	TCP/IP connections on port 5432?
+
+05/02/2023/ 12:26:51 PM - [create_db.py:48] - ERROR: name 'conn' is not defined
+05/02/2023/ 12:33:15 PM - [create_table.py:18] - INFO: connection à la base de donnée
+05/02/2023/ 12:33:15 PM - [create_table.py:50] - INFO: création de la table metadata_file
+05/02/2023/ 12:33:15 PM - [create_table.py:54] - INFO: Arret du curseur de la base de donnée
+05/02/2023/ 12:33:15 PM - [create_table.py:57] - INFO: éxecution de la commande
+05/02/2023/ 12:33:15 PM - [create_table.py:63] - INFO: ferméture de la base de donnée
+05/02/2023/ 12:33:27 PM - [create_db.py:18] - INFO: connection avec le serveur postgres
+05/02/2023/ 12:33:27 PM - [create_db.py:33] - INFO: creation du curseur de la base de donnée
+05/02/2023/ 12:33:27 PM - [create_db.py:37] - INFO: creation de la base donnée 
+05/02/2023/ 12:33:27 PM - [create_db.py:42] - INFO: la base de donnée crée avec succès !!
+05/02/2023/ 12:33:27 PM - [create_db.py:45] - INFO: ferméture de la base de donnée
+05/02/2023/ 12:55:45 PM - [create_table.py:18] - INFO: connection à la base de donnée
+05/02/2023/ 12:55:45 PM - [create_table.py:52] - INFO: création de la table metadata_file
+05/02/2023/ 12:55:45 PM - [create_table.py:62] - ERROR: syntax error at or near "model"
+LINE 5:             model longtext
+                    ^
+
+05/02/2023/ 12:55:45 PM - [create_table.py:65] - INFO: ferméture de la base de donnée
+05/02/2023/ 12:56:43 PM - [create_table.py:18] - INFO: connection à la base de donnée
+05/02/2023/ 12:56:43 PM - [create_table.py:52] - INFO: création de la table metadata_file
+05/02/2023/ 12:56:43 PM - [create_table.py:62] - ERROR: type "longtext" does not exist
+LINE 5:             model longtext,
+                          ^
+
+05/02/2023/ 12:56:43 PM - [create_table.py:65] - INFO: ferméture de la base de donnée
+05/02/2023/ 01:04:15 PM - [create_table.py:18] - INFO: connection à la base de donnée
+05/02/2023/ 01:04:15 PM - [create_table.py:54] - INFO: création de la table metadata_file
+05/02/2023/ 01:04:15 PM - [create_table.py:58] - INFO: Arret du curseur de la base de donnée
+05/02/2023/ 01:04:15 PM - [create_table.py:61] - INFO: éxecution de la commande
+05/02/2023/ 01:04:15 PM - [create_table.py:67] - INFO: ferméture de la base de donnée

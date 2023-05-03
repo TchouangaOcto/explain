@@ -1,0 +1,43 @@
+version: "3.9"
+services:
+  web: # application web service
+    tty: true
+    build: .
+    ports:
+      - "5000:80"
+    volumes:
+      - ./:/explain
+    networks:
+      - postgres_network
+    depends_on:
+      - database
+
+  database: # database service configuration
+    image: postgres:15
+    tty: true
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=0000
+      - POSTGRES_DB=postgres
+    networks:
+      - postgres_network
+    volumes:
+      - db-data:/var/lib/postgresql/data/
+
+  pgadmin4: # pgadmin interface service configuration
+    image: dpage/pgadmin4
+    environment:
+        PGADMIN_DEFAULT_EMAIL: ftchouanga@gmail.com
+        PGADMIN_DEFAULT_PASSWORD: 0000
+    ports:
+        - "8889:80"
+    networks:
+      - postgres_network
+volumes:
+  db-data: # data volumes from database postgresql
+
+networks: # services networking infrastructrure
+  postgres_network:
+    driver: bridge
