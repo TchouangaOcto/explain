@@ -1,0 +1,36 @@
+.custom-dropdown{
+  background-color: #10b1ae;
+  border-color: #005670;
+  color: #10b1ae;
+}
+
+.btn {
+  background-color: #F79034;
+  color: white;
+}
+
+.btn:hover {
+  background-color: #F79034;
+  color: white;
+  cursor: pointer
+}
+
+.custom-flex {
+  display: flex;
+}
+
+.card-title {
+    margin: 20px;
+    padding: 10px;
+    font-family: Overpass;
+    fontWeight: bold,
+    textAlign: center
+}
+
+.cards {
+    display: flex;
+}
+
+.btn_drop {
+
+}
