@@ -1,12 +1,24 @@
 version: "3.9"
 services:
-  web: # application web service
+  web1: # application web service
     tty: true
     build: .
     ports:
       - "5000:80"
     volumes:
-      - ./:/explain
+      - ./:/explain/Explanable
+    networks:
+      - postgres_network
+    depends_on:
+      - database
+
+  web2: # application web service
+    tty: true
+    build: .
+    ports:
+      - "8050:8050"
+    volumes:
+      - ./:/explain/Explanable_v2
     networks:
       - postgres_network
     depends_on:

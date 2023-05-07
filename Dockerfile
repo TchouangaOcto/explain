@@ -3,6 +3,7 @@ RUN pip install --upgrade pip
 RUN mkdir /db-data
 WORKDIR /explain
 COPY . /explain
+CMD ['python', 'app.py']
 
 
 
