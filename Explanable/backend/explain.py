@@ -9,10 +9,10 @@ from shapash import SmartExplainer
 current_dir = os.getcwd()
 current_dir = Path(Path(current_dir).parent.absolute())
 # repertoire donnant accès au log file
-from log_app.log import log
+from Explanable.log_app.log import log
 
 # référence log
-file = "Explanable/log_app/backend.log"
+file = "explain/Explanable/log_app/backend.log"
 logfile = os.path.join(current_dir, file)
 logger = log()
 log = logger.log(logfile)

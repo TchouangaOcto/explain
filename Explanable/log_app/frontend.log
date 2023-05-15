@@ -233,3 +233,81 @@
 05/02/2023/ 02:04:21 PM - [index.py:234] - INFO: valeur dropdown explicatif: None
 05/02/2023/ 02:04:21 PM - [index.py:235] - INFO: contenu modèle: None
 05/02/2023/ 02:04:21 PM - [index.py:278] - INFO: verification du troisième tab
+05/08/2023/ 04:14:40 PM - [app.py:108] - INFO: obtention du contenu du logo
+05/08/2023/ 04:14:40 PM - [app.py:117] - INFO: chargement de la page acceuille web
+05/08/2023/ 04:14:40 PM - [app.py:202] - INFO: activation de callback pour le management des tabs
+05/08/2023/ 04:14:40 PM - [app.py:324] - INFO: lancement du serveur dash
+05/08/2023/ 04:41:43 PM - [app.py:108] - INFO: obtention du contenu du logo
+05/08/2023/ 04:41:43 PM - [app.py:117] - INFO: chargement de la page acceuille web
+05/08/2023/ 04:41:43 PM - [app.py:202] - INFO: activation de callback pour le management des tabs
+05/08/2023/ 04:41:43 PM - [app.py:324] - INFO: lancement du serveur dash
+05/08/2023/ 04:44:20 PM - [app.py:108] - INFO: obtention du contenu du logo
+05/08/2023/ 04:44:20 PM - [app.py:117] - INFO: chargement de la page acceuille web
+05/08/2023/ 04:44:20 PM - [app.py:202] - INFO: activation de callback pour le management des tabs
+05/08/2023/ 04:44:20 PM - [app.py:324] - INFO: lancement du serveur dash
+05/08/2023/ 04:44:26 PM - [app.py:234] - INFO: valeur dropdown explicatif: None
+05/08/2023/ 04:44:26 PM - [app.py:305] - INFO: lancement du callabck pour obtenir les graphiques l'explicabilité
+05/08/2023/ 04:44:26 PM - [app.py:235] - INFO: contenu modèle: None
+05/08/2023/ 04:44:26 PM - [app.py:306] - INFO: valeur de méthode None
+05/08/2023/ 04:44:26 PM - [app.py:254] - INFO: verification du premier tab
+05/08/2023/ 04:44:26 PM - [app.py:307] - INFO: valeur de checklist None
+05/08/2023/ 04:44:26 PM - [app.py:265] - INFO: texte contenant le message de bienvenue
+05/08/2023/ 04:44:26 PM - [app.py:308] - INFO: valeur à prédire None
+05/08/2023/ 06:04:52 PM - [app.py:108] - INFO: obtention du contenu du logo
+05/08/2023/ 06:04:52 PM - [app.py:117] - INFO: chargement de la page acceuille web
+05/08/2023/ 06:04:52 PM - [app.py:202] - INFO: activation de callback pour le management des tabs
+05/08/2023/ 06:04:52 PM - [app.py:324] - INFO: lancement du serveur dash
+05/08/2023/ 06:04:56 PM - [app.py:234] - INFO: valeur dropdown explicatif: None
+05/08/2023/ 06:04:56 PM - [app.py:235] - INFO: contenu modèle: None
+05/08/2023/ 06:04:56 PM - [app.py:305] - INFO: lancement du callabck pour obtenir les graphiques l'explicabilité
+05/08/2023/ 06:04:56 PM - [app.py:254] - INFO: verification du premier tab
+05/08/2023/ 06:04:56 PM - [app.py:306] - INFO: valeur de méthode None
+05/08/2023/ 06:04:56 PM - [app.py:265] - INFO: texte contenant le message de bienvenue
+05/08/2023/ 06:04:56 PM - [app.py:307] - INFO: valeur de checklist None
+05/08/2023/ 06:04:56 PM - [app.py:308] - INFO: valeur à prédire None
+05/08/2023/ 06:05:25 PM - [app.py:234] - INFO: valeur dropdown explicatif: None
+05/08/2023/ 06:05:25 PM - [app.py:235] - INFO: contenu modèle: None
+05/08/2023/ 06:05:25 PM - [app.py:254] - INFO: verification du premier tab
+05/08/2023/ 06:05:25 PM - [load_donnée.py:122] - INFO: le fichier à un format csv
+05/08/2023/ 06:05:25 PM - [load_donnée.py:192] - INFO: lancement de la fonction après le callback
+05/08/2023/ 06:05:25 PM - [app.py:305] - INFO: lancement du callabck pour obtenir les graphiques l'explicabilité
+05/08/2023/ 06:05:25 PM - [load_donnée.py:196] - INFO: mise à jours de table donnée
+05/08/2023/ 06:05:25 PM - [app.py:306] - INFO: valeur de méthode None
+05/08/2023/ 06:05:25 PM - [load_donnée.py:199] - INFO: chargement du contenu du fichier
+05/08/2023/ 06:05:25 PM - [app.py:307] - INFO: valeur de checklist None
+05/08/2023/ 06:05:25 PM - [load_donnée.py:122] - INFO: le fichier à un format csv
+05/08/2023/ 06:05:25 PM - [app.py:308] - INFO: valeur à prédire None
+05/08/2023/ 06:05:25 PM - [load_donnée.py:202] - INFO: création du data table
+05/08/2023/ 06:05:25 PM - [load_donnée.py:156] - INFO: connection avec le serveur postgres
+05/08/2023/ 06:05:25 PM - [load_donnée.py:168] - INFO: lancement du query
+05/08/2023/ 06:05:25 PM - [load_donnée.py:170] - INFO: Arret du curseur de la base de donnée
+05/08/2023/ 06:05:25 PM - [load_donnée.py:172] - INFO: query commité
+05/08/2023/ 06:05:25 PM - [load_donnée.py:174] - INFO: ferméture de la connexion à la base de donnée
+05/08/2023/ 06:21:20 PM - [load_donnée.py:192] - INFO: lancement de la fonction après le callback
+05/08/2023/ 06:21:20 PM - [app.py:234] - INFO: valeur dropdown explicatif: None
+05/08/2023/ 06:21:20 PM - [load_donnée.py:196] - INFO: mise à jours de table donnée
+05/08/2023/ 06:21:20 PM - [app.py:235] - INFO: contenu modèle: None
+05/08/2023/ 06:21:20 PM - [load_donnée.py:199] - INFO: chargement du contenu du fichier
+05/08/2023/ 06:21:20 PM - [app.py:254] - INFO: verification du premier tab
+05/08/2023/ 06:21:20 PM - [load_donnée.py:122] - INFO: le fichier à un format csv
+05/08/2023/ 06:21:20 PM - [load_donnée.py:122] - INFO: le fichier à un format csv
+05/08/2023/ 06:21:20 PM - [load_donnée.py:202] - INFO: création du data table
+05/08/2023/ 06:21:20 PM - [load_donnée.py:156] - INFO: connection avec le serveur postgres
+05/08/2023/ 06:21:20 PM - [load_donnée.py:168] - INFO: lancement du query
+05/08/2023/ 06:21:20 PM - [load_donnée.py:170] - INFO: Arret du curseur de la base de donnée
+05/08/2023/ 06:21:20 PM - [load_donnée.py:172] - INFO: query commité
+05/08/2023/ 06:21:20 PM - [load_donnée.py:174] - INFO: ferméture de la connexion à la base de donnée
+05/08/2023/ 06:21:20 PM - [app.py:305] - INFO: lancement du callabck pour obtenir les graphiques l'explicabilité
+05/08/2023/ 06:21:20 PM - [app.py:306] - INFO: valeur de méthode None
+05/08/2023/ 06:21:20 PM - [load_donnée.py:192] - INFO: lancement de la fonction après le callback
+05/08/2023/ 06:21:20 PM - [app.py:307] - INFO: valeur de checklist None
+05/08/2023/ 06:21:20 PM - [load_donnée.py:196] - INFO: mise à jours de table donnée
+05/08/2023/ 06:21:20 PM - [app.py:308] - INFO: valeur à prédire None
+05/08/2023/ 06:21:20 PM - [load_donnée.py:199] - INFO: chargement du contenu du fichier
+05/08/2023/ 06:21:20 PM - [load_donnée.py:122] - INFO: le fichier à un format csv
+05/08/2023/ 06:21:21 PM - [load_donnée.py:202] - INFO: création du data table
+05/08/2023/ 06:21:21 PM - [load_donnée.py:156] - INFO: connection avec le serveur postgres
+05/08/2023/ 06:21:21 PM - [load_donnée.py:168] - INFO: lancement du query
+05/08/2023/ 06:21:21 PM - [load_donnée.py:170] - INFO: Arret du curseur de la base de donnée
+05/08/2023/ 06:21:21 PM - [load_donnée.py:172] - INFO: query commité
+05/08/2023/ 06:21:21 PM - [load_donnée.py:174] - INFO: ferméture de la connexion à la base de donnée

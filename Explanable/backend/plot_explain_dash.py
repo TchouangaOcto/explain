@@ -3,8 +3,8 @@ import os
 import sys
 from pathlib import Path
 import dash_bootstrap_components as dbc
-from backend.app import app
-from backend.explain import *
+from app import app
+from Explanable.backend.explain import *
 import psycopg2
 import pandas as pd
 import io
@@ -13,8 +13,8 @@ import base64
 current_dir = os.getcwd()
 current_dir = Path(Path(current_dir).parent.absolute())
 print(current_dir)
-from log_app.log import log
-file = "Explanable/log_app/backend.log"
+from Explanable.log_app.log import log
+file = "explain/Explanable/log_app/backend.log"
 logfile = os.path.join(current_dir, file)
 logger = log()
 log = logger.log(logfile)
@@ -75,10 +75,10 @@ def request(sql):
         # connection à la base de donnée
         log.info('connection avec le serveur postgres')
         conn = psycopg2.connect(
-            database="postgres",
-            user='postgres',
-            password='0000',
-            host='database',
+            database=os.getenv('DB_DATABASE'),
+            user=os.getenv('DB_USER'),
+            password=os.getenv('DB_PASSWORD'),
+            host=os.getenv('DB_HOST'),
             port='5432'
         )
     except Exception as e:
@@ -115,6 +115,7 @@ def update_card(checkbox_valeur,dropdown_valeur,variable_predire, variable_expli
         modèle = pd.read_pickle(io.BytesIO(modèle_decoded))
         dataset = pd.read_csv(io.StringIO(dataset_decoded.decode('utf-8')))
         dalex_explain = load_explain(modèle,dataset,variable_predire)
+        log.info(f'dalex is: {dalex_explain}')
         log.info(f"chargement de l'outil dalex {dalex_explain}")
         #dalex_explain.feature_importance().update_traces(marker=dict(color="# 89D9D7"),hoverlabel=dict(bgcolor= "#F79034"),selector=dict(type="bar"))
         #dalex_explain.feature_importance().data[0].hoverlabel.bgcolor =

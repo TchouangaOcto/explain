@@ -18,8 +18,8 @@ try:
     log.info('connection avec le serveur postgres')
     conn = psycopg2.connect(
         database="postgres",
-        user='postgres',
-        password='0000',
+        user='citus',
+        password='FRAst@201',
         host='database',
         port='5432'
     )

@@ -11,10 +11,10 @@ from pathlib import Path
 current_dir = os.getcwd()
 current_dir = Path(Path(current_dir).parent.absolute())
 print(current_dir)
-from log_app.log import log
+from Explanable.log_app.log import log
 
 # instance de log
-file = "Explanable/log_app/backend.log"
+file = "explain/Explanable/log_app/backend.log"
 logfile = os.path.join(current_dir, file)
 logger = log()
 log = logger.log(logfile)
@@ -68,10 +68,10 @@ style_data_conditional = [
 try:
     log.info('connection avec le serveur postgres')
     conn = psycopg2.connect(
-        database="postgres",
-        user='postgres',
-        password='0000',
-        host='database',
+        database=os.getenv('DB_DATABASE'),
+        user=os.getenv('DB_USER'),
+        password=os.getenv('DB_PASSWORD'),
+        host=os.getenv('DB_HOST'),
         port='5432'
     )
 except Exception as e:
