@@ -3,13 +3,17 @@ au module backend pour le fonctionnement de l’interface.
 (dépendence: load_donnée, load_modèle, tab_historique_data, tab_historique_modèle)
 """
 from dash import *
-import dash_bootstrap_components as dbc
-from Explanable.backend.app import app
+from Explanable.backend.server import app
 from Explanable.backend import load_donnée, load_modèle, tab_historique_donnée, tab_historique_modèle, plot_explain_dash
 import os
 import sys
 import base64
 from pathlib import Path
+import dash_bootstrap_components as dbc
+import dash_html_components as html
+import dash_core_components as dcc
+
+
 current_dir = os.getcwd()
 current_dir = Path(Path(current_dir).parent.absolute())
 sys.path.append(os.path.join(current_dir, 'log'))
@@ -20,10 +24,10 @@ logger = log()
 log = logger.log(logfile)
 
 #setting environment variables
-os.environ['DB_USER'] = 'postgres'
-os.environ['DB_PASSWORD'] = '0000'
-os.environ['DB_DATABASE'] = 'postgres'
-os.environ['DB_HOST'] = 'database'
+os.environ['DB_USER'] = 'citus'
+os.environ['DB_PASSWORD'] = 'FRAst@201'
+os.environ['DB_DATABASE'] = 'citus'
+os.environ['DB_HOST'] = 'c.database.postgres.database.azure.com'
 
 # variable globale et intérageable avec d'autre module
 outils_xai = ['shapash', 'dalex','shap']
@@ -114,6 +118,11 @@ page_style={
 "flex-wrap": "wrap"
 }
 
+tooltip_style = {
+    "color":'#10b1ae',
+    "background-color": "#F3FBFB"
+}
+
 
 # obtention du contenu du logo
 log.info('obtention du contenu du logo')
@@ -135,13 +144,13 @@ app.layout = html.Div([
         html.Div(children=[
             dcc.Upload(id='donnée', children=html.Div(
                 [dbc.Button('charger les données', style=btn_style,
-                            size='lg', className="btn", id='donnée_button', n_clicks=0)])),], style=div_btn_style),
+                            size='lg', className="btn", id='donnée_button', n_clicks=0),dbc.Tooltip('charge les fichiers csv seulement',style=tooltip_style, target='donnée_button',placement='top')])),], style=div_btn_style),
         # button chargement de modèle
         html.Div(children=[
             dcc.Upload(id='modèle', children=html.Div([dbc.Button('charger le modèle',
                                                                    style=btn_style,
                                                                    size='lg', className="btn",
-                                                                   id='modèle_button', n_clicks=0)], ))], style=div_btn_style),
+                                                                   id='modèle_button', n_clicks=0), dbc.Tooltip('charge les fichiers pkl seulement',style=tooltip_style, target='modèle',placement='top')], ))], style=div_btn_style),
 
         # checkbox pour l'explanabilité
         dcc.Checklist([choix_xai[0]],style=radio_btn_style, inline=True,id='checklist_explain'),
@@ -222,12 +231,13 @@ log.info('activation de callback pour le management des tabs')
                   Input("tabs-styled-with-inline", "value"),
                   Input('donnée', 'contents'),
                   Input('modèle', 'contents'),
+                  Input('tab_content','clickInfo'),
                   State('modèle', 'filename'),
                   State('donnée', 'filename')
               ]
               )
 
-def render_content(contenu_dropdown_variable_explicatif,tab,contenu_donnée,contenu_modèle,filename_modèle,filename_donnée):
+def render_content(contenu_dropdown_variable_explicatif,tab,contenu_donnée,contenu_modèle,cell,filename_modèle,filename_donnée):
     '''
     Fonction gérant la mise à jour du contenu des tabs
     :param tab: le tab spécifique sur lequel l'utilisateur a cliqué
@@ -263,6 +273,12 @@ def render_content(contenu_dropdown_variable_explicatif,tab,contenu_donnée,cont
             if contenu_donnée is not None:# si le contenu des données existe
                 if contenu_dropdown_variable_explicatif is not None:
                     return load_donnée.layout, no_update, no_update, no_update
+
+                elif load_donnée.parse_fichier(contenu_donnée, filename_donnée) is None:
+                    return  html.Div([
+                         html.H4('oops charge un fichier xls, csv, xlsx',
+                                style=texte_style)]), no_update, no_update, no_update
+
                 else:
                     colonnes = load_donnée.parse_fichier(contenu_donnée, filename_donnée)[1]
                     state = True
@@ -276,6 +292,7 @@ def render_content(contenu_dropdown_variable_explicatif,tab,contenu_donnée,cont
                             style=texte_style)]), no_update, no_update, no_update # sinon renvoyer du texte
 
         elif tab == "tab-2": # si le tab 2 est cliqué
+            log.info(f'active cell is {cell}')
             log.info('verification du deuxième tab')#  mettre à jour l'historique des données chargé
             return tab_historique_donnée.layout,no_update, no_update, no_update
             #return html.Div([

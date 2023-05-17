@@ -3,17 +3,18 @@ fichier gérant l’historique des fichiers de chargé
 """
 from dash import *
 import psycopg2
-import dask.dataframe as dd
 import pandas as pd
 import os
-import sys
 from pathlib import Path
+import dash_html_components as html
+
 current_dir = os.getcwd()
 current_dir = Path(Path(current_dir).parent.absolute())
 print(current_dir)
-from Explanable.log_app.log import log
+
 
 # instance de log
+from Explanable.log_app.log import log
 file = "explain/Explanable/log_app/backend.log"
 logfile = os.path.join(current_dir, file)
 logger = log()
@@ -92,6 +93,6 @@ layout = html.Div([dash_table.DataTable(
     style_data=style_data,
     style_data_conditional=style_data_conditional,
     style_cell_conditional=style_cell_conditional,
-    page_size= 7,
+    page_size= 10,
     tooltip_duration=None
 ) ,])

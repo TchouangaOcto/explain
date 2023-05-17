@@ -2,22 +2,22 @@
 fichier permetant de chargé le fichier de donnée et mettre à jour le metadata donnée
 """
 from dash import *
-import dask.dataframe as dd
 import datetime
 import psycopg2
 import pandas as pd
 import io
 import base64
-from app import app
+from Explanable.backend.server import app
 import os
-import sys
 from pathlib import Path
+import dash_html_components as html
+
 current_dir = os.getcwd()
 current_dir = Path(Path(current_dir).parent.absolute())
 print(current_dir)
-from Explanable.log_app.log import log
 
 # instance de log
+from Explanable.log_app.log import log
 file = "explain/Explanable/log_app/backend.log"
 logfile = os.path.join(current_dir, file)
 logger = log()
@@ -49,6 +49,12 @@ style_data = {
         }
 
 style_table = {'overflowX': 'auto'}
+
+texte_style= {
+    'textAlign': 'center',
+    'font-family': 'Overpass',
+    'font-weight':'normal',
+    'font-size': '250%'}
 
 style_data_conditional = [
             {
@@ -91,7 +97,9 @@ layout = html.Div([
                     style_data=style_data,
                     style_data_conditional=style_data_conditional,
                     style_header_conditional=style_header_conditional,
-                    virtualization=True
+                    virtualization=True,
+                    tooltip_delay=0,
+                    tooltip_duration=None
                              ),])
 
 # connection à la base de donnée
@@ -135,6 +143,9 @@ def parse_fichier(contents, filename):
                 log.info('le fichier à un format pickle')
                 model = pd.read_pickle(io.BytesIO(decoded))
                 return no_update
+            else:
+                return None
+
             candidates = ['Unnamed: 0']
             df = df.drop([x for x in candidates if x in df.columns], 1)
             df_table = df.copy()
@@ -196,7 +207,7 @@ def update_app(contents_donnée, filename_donnée):
             log.info('mise à jours de table donnée')
             table = 'metadata_donnée_v2'
             sql = f"INSERT INTO {table} (date,fichier,contenu) VALUES (%s,%s,%s);"
-            log.info('chargement du contenu du fichier')
+            log.info('chargement du contenu du fichier et des infos sur les lignes de la table')
             dict_donnée, _, content_string = parse_fichier(contents_donnée,
                           filename_donnée)
             log.info('création du data table')

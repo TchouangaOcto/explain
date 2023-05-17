@@ -2,21 +2,19 @@
  fichier permetant de chargé le fichier de modèle et de mettre à jour le metadata donnée
 """
 from dash import *
-import dask.dataframe as dd
 import datetime
 import psycopg2
-from psycopg2.extras import Json, DictCursor
-import json
 import pandas as pd
 import io
 import base64
-from app import app
 import os
-import sys
 from pathlib import Path
+
+
 current_dir = os.getcwd()
 current_dir = Path(Path(current_dir).parent.absolute())
-print(current_dir)
+
+
 from Explanable.log_app.log import log
 file = "explain/Explanable/log_app/backend.log"
 logfile = os.path.join(current_dir, file)
@@ -52,6 +50,9 @@ def parse_fichier(contents, filename): # fichier pkl juste pris en charge
                 log.info('something went wrong with getting the name of the model')
                 log.error(e)
             return model_name, model.get_params(), content_string
+
+        else:
+            return None
 
     except Exception as e:
         log.error(e)

@@ -1,18 +1,18 @@
 from dash import *
-import os
-import sys
-from pathlib import Path
-import dash_bootstrap_components as dbc
-from app import app
+from Explanable.backend.server import app
 from Explanable.backend.explain import *
 import psycopg2
 import pandas as pd
 import io
 import base64
+import dash_bootstrap_components as dbc
+import dash_html_components as html
+import dash_core_components as dcc
 
 current_dir = os.getcwd()
 current_dir = Path(Path(current_dir).parent.absolute())
-print(current_dir)
+print('running file plot dash explain')
+
 from Explanable.log_app.log import log
 file = "explain/Explanable/log_app/backend.log"
 logfile = os.path.join(current_dir, file)

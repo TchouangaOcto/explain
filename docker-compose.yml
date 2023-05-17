@@ -31,7 +31,7 @@ services:
 
 volumes:
   db-data: # data volumes from database postgresql
-    driver: azure_file
-    driver_opts:
-     share_name: myfileshare
-     storage_account_name: mystorageaccountexplain
+    #driver: azure_file
+    #driver_opts:
+     #share_name: myfileshare
+     #storage_account_name: mystorageaccountexplain
