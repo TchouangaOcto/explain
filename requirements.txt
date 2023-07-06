@@ -197,3 +197,4 @@ wsproto==1.1.0
 WTForms==2.3.3
 yarl==1.7.2
 zipp==3.14.0
+explainerdashboard

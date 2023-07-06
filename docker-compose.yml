@@ -12,10 +12,10 @@ services:
     depends_on:
       - database
     environment:
-      - DB_USER=citus
-      - DB_PASSWORD=FRAst@201
-      - DB_DATABASE=citus
-      - DB_HOST=c.database.postgres.database.azure.com
+      - DB_USER=postgres
+      - DB_PASSWORD=0000
+      - DB_DATABASE=postgres
+      - DB_HOST=database
 
   database: # database service configuration
     image: postgres:15

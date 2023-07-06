@@ -3,18 +3,18 @@ fichier gérant l’historique des fichiers de jeu de donnée chargé
 """
 from dash import *
 import psycopg2
+import dask.dataframe as dd
 import pandas as pd
 import os
+import sys
 from pathlib import Path
-import dash_html_components as html
 
 current_dir = os.getcwd()
 current_dir = Path(Path(current_dir).parent.absolute())
-print("chargement de l'histotique des données")
-
+print(current_dir)
+from Explanable.log_app.log import log
 
 # instance de log
-from Explanable.log_app.log import log
 file = "explain/Explanable/log_app/backend.log"
 logfile = os.path.join(current_dir, file)
 logger = log()
@@ -77,29 +77,15 @@ except Exception as e:
     log.error(e)
 
 # layout
-message = 'en cliquant dessus vous lancez le chargement du fichier'
-
 layout = html.Div([dash_table.DataTable(
     data=df.to_dict('records'),
-    tooltip_data=[
-        {
-            column: {'value': message, 'type': 'markdown'}
-            for column, value in row.items() if column == 'fichier'
-        } for row in df.to_dict('records')
-    ],
-    css=[{
-        'selector': '.dash-table-tooltip',
-        'rule': 'background-color: #EEEFF1; font-family: monospace; color: black'
-    }],
-    tooltip_delay=0,
-    tooltip_duration=None,
     style_as_list_view=True,
     style_cell=style_cell,
     style_header=style_header,
     style_data=style_data,
     style_data_conditional=style_data_conditional,
     style_cell_conditional=style_cell_conditional,
-    page_size= 10,
+    page_size= 7,
     virtualization=True
 ) ,])
 
