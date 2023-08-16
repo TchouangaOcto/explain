@@ -15,7 +15,7 @@ services:
       - DB_USER=postgres
       - DB_PASSWORD=0000
       - DB_DATABASE=postgres
-      - DB_HOST=database
+  #    - DB_HOST=database
 
   database: # database service configuration
     image: postgres:15
