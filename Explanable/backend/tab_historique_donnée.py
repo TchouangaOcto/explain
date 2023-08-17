@@ -8,6 +8,8 @@ import pandas as pd
 import os
 import sys
 from pathlib import Path
+from Explanable.backend.assets.style_app import texte_style
+from Explanable.backend.assets.style_historique_donnée import * 
 
 current_dir = os.getcwd()
 current_dir = Path(Path(current_dir).parent.absolute())
@@ -21,73 +23,44 @@ logger = log()
 log = logger.log(logfile)
 
 
-# css style
-style_header = {
-    'backgroundColor': '#96B9C4',
-    'color': '#F3FBFB',
-    'fontWeight': 'bold'
-}
+log.info('connection avec le serveur postgres')
+print("info : connection avec le serveur postgres")
+conn = psycopg2.connect(
+    database=os.getenv('DB_DATABASE'),
+    user=os.getenv('DB_USER'),
+    password=os.getenv('DB_PASSWORD'),
+    host=os.getenv('DB_HOST'),
+    port='5432'
+)
 
-style_data = {
-    'color': 'black',
-    'backgroundColor': 'white',
-    'whiteSpace': 'normal',
-    'height': 'auto',
-    'lineHeight': '40px'
-}
 
-style_cell={
-    'font-family': 'Overpass'
-}
-
-style_cell_conditional = [
-    {
-    'if': {'column_id': 'fichier'},
-        'textAlign': 'center'
-    },
-    {
-        'if': {'column_id': 'date'},
-        'textAlign': 'center'
-    }
-]
-
-style_data_conditional = [
-    {
-        'if': {'row_index': 'odd'},
-        'backgroundColor': '#EEEFF1',
-    }
-]
-
-try:
-    log.info('connection avec le serveur postgres')
-    conn = psycopg2.connect(
-        database=os.getenv('DB_DATABASE'),
-        user=os.getenv('DB_USER'),
-        password=os.getenv('DB_PASSWORD'),
-       # host=os.getenv('DB_HOST'),
-        port='5432'
-    )
-except Exception as e:
-    log.error(e)
 sql = "SELECT date, fichier FROM metadata_donnée_v2;"
+
 log.info('recuperation des données de la base')
 try:
     df = pd.read_sql(sql,conn)
+
 except Exception as e:
     log.error(e)
 
-# layout
-layout = html.Div([dash_table.DataTable(
-    data=df.to_dict('records'),
-    style_as_list_view=True,
-    style_cell=style_cell,
-    style_header=style_header,
-    style_data=style_data,
-    style_data_conditional=style_data_conditional,
-    style_cell_conditional=style_cell_conditional,
-    page_size= 7,
-    virtualization=True
-) ,])
+
+if df.empty: # ce qui se passe si elle est vide
+    layout = html.H4('Pas de donnée historique disponible !', style=texte_style)
+
+else: #  dans le cas ou la base de donnée n'est pas vide
+    layout = html.Div([dash_table.DataTable(
+        data=df.to_dict('records'),
+        style_as_list_view=True,
+        style_cell=style_cell,
+        style_header=style_header,
+        style_data=style_data,
+        style_data_conditional=style_data_conditional,
+        style_cell_conditional=style_cell_conditional,
+        page_size= 7,
+        virtualization=True
+    ) ,])
+
+
 
 
 
