@@ -78,7 +78,7 @@ def request(sql):
             database=os.getenv('DB_DATABASE'),
             user=os.getenv('DB_USER'),
             password=os.getenv('DB_PASSWORD'),
-           # host=os.getenv('DB_HOST'),
+            host=os.getenv('DB_HOST'),
             port='5432'
         )
     except Exception as e:

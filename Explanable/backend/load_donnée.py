@@ -12,6 +12,8 @@ from Explanable.backend.server import app
 import os
 import sys
 from pathlib import Path
+from Explanable.backend.assets.style_load_donnée import *
+
 current_dir = os.getcwd()
 current_dir = Path(Path(current_dir).parent.absolute())
 print(current_dir)
@@ -24,59 +26,6 @@ logger = log()
 log = logger.log(logfile)
 
 filename = ''
-
-# css style
-style_header = {
-            'backgroundColor': '#96B9C4',
-            'color': '#F3FBFB',
-            'fontWeight': 'bold'
-        }
-
-style_header_conditional = [
-            {'if': {'column_id': 'id', },
-             'display': 'None', }]
-
-style_cell = {
-            'font-family': 'Overpass'
-        }
-
-style_data = {
-            'color': 'black',
-            'backgroundColor': 'white',
-            'whiteSpace': 'normal',
-            'height': 'auto',
-
-        }
-
-style_table = {'overflowX': 'auto'}
-
-style_data_conditional = [
-            {
-                'if': {'row_index': 'odd'},
-                'backgroundColor': '#EEEFF1',
-            },
-            {'if': {'column_id': 'id', },
-             'display': 'None', }
-        ]
-
-style_data_conditional2 = [
-            {
-                "if": {
-                    "state": "active"  # 'active' | 'selected'
-                },
-                "backgroundColor": "rgba(0, 116, 217, 0.3)",
-                "border": "1px solid rgb(0, 116, 217)",
-            },
-            {
-                "if": {
-                    "state": "selected"  # 'active' | 'selected'
-                },
-                "backgroundColor": "rgba(0, 116, 217, 0.3)",
-                "border": "1px solid rgb(0, 116, 217)",
-            },
-            {'if': {'column_id': 'id', },
-             'display': 'None', }
-        ]
 
 # layout
 layout = html.Div([
@@ -158,7 +107,7 @@ def update_metadata(filename,contenu,date,sql):
             database=os.getenv('DB_DATABASE'),
             user=os.getenv('DB_USER'),
             password=os.getenv('DB_PASSWORD'),
-      #      host=os.getenv('DB_HOST'),
+            host=os.getenv('DB_HOST'),
             port='5432'
         )
     except Exception as e:
