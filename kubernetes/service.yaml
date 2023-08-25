@@ -1,0 +1,44 @@
+metadata:
+  name: postgres-service
+  namespace: my-namespace
+  labels:
+    app: postgres
+
+
+apiVersion: v1
+
+kind: Service
+metadata:
+  name: explain-app-service
+  namespace: explain
+spec:
+  selector:
+    app: explain-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8050
+  type: LoadBalancer
+
+metadata:
+  name: postgres-service
+  namespace: explain
+  labels:
+    app: postgres
+spec:
+  selector:
+    app: postgres
+  ports:
+    - name: postgres
+      protocol: TCP
+      port: 5432
+      targetPort: 5432
+  type: ClusterIP
+Explanation:
+
+# metadata.name: The name of the service, which can be used for DNS resolution inside the cluster.
+# metadata.labels: Labels are key-value pairs attached to the service, often used to identify the application or its version.
+# spec.selector: This determines which pods the service routes traffic to. In this case, it selects pods with the label app=postgres.
+# spec.ports: This is where you define which ports the service should listen on and where it should route the incoming traffic.
+# spec.type: This determines how the service is exposed. The ClusterIP type means that the service is only accessible from within the cluster. If you'd want to expose the PostgreSQL instance to the outside world (usually not recommended unless you have a good
+
