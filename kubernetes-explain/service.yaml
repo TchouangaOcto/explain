@@ -20,6 +20,7 @@ spec:
       targetPort: 8050
   type: LoadBalancer
 
+kind: Service
 metadata:
   name: postgres-service
   namespace: explain
@@ -34,7 +35,7 @@ spec:
       port: 5432
       targetPort: 5432
   type: ClusterIP
-Explanation:
+
 
 # metadata.name: The name of the service, which can be used for DNS resolution inside the cluster.
 # metadata.labels: Labels are key-value pairs attached to the service, often used to identify the application or its version.

@@ -22,8 +22,6 @@ spec:
         - name: DATABASE_URL
           value: "postgresql://postgres:0000@postgres-service:5432/postgres"
 
-
-kind: Deployment
 metadata:
 namespace: explain
   name: postgres
@@ -42,11 +40,19 @@ spec:
         image: postgres:latest
         env:
         - name: POSTGRES_DB
-          value: "postgres"
+          valueFrom:
+              configMapKeyRef:
+                name: postgres-config
+                key: POSTGRES_DB
         - name: POSTGRES_USER
-          value: "postgres"
+          valueFrom:
+              secretKeyRef:
+                name: postgres-secret
+                key: POSTGRES_USER
         - name: POSTGRES_PASSWORD
-          value: "0000"
+              secretKeyRef:
+                name: postgres-secret 
+                key: POSTGRES_PASSWORD
         ports:
         - containerPort: 5432
         volumeMounts:
