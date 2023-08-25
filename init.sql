@@ -11,3 +11,5 @@ CREATE TABLE IF NOT EXISTS metadata_modèle  (
     hyperparametre text,
     contenu text
 );
+
+

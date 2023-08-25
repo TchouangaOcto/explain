@@ -43,18 +43,26 @@ layout = html.Div([
                     virtualization=True
                              ),])
 
-# connection à la base de donnée
-try:
-    log.info('connection avec le serveur postgres')
-    conn = psycopg2.connect(
-        database=os.getenv('DB_DATABASE'),
-        user=os.getenv('DB_USER'),
-        password=os.getenv('DB_PASSWORD'),
-        host=os.getenv('DB_HOST'),
-        port='5432'
-    )
-except Exception as e:
-    log.error(e)
+def connection_à_la_base_de_donnée():
+    """
+    fonction permettant de se connecté à la base de pur les données chargé 
+    sur la platforme
+
+    :return: connection [objet] (objet de connection à la base de donnée)
+    """
+    try:
+        log.info('connection avec le serveur postgres')
+        connection= psycopg2.connect(
+            database=os.getenv('DB_DATABASE'),
+            user=os.getenv('DB_USER'),
+            password=os.getenv('DB_PASSWORD'),
+            host=os.getenv('DB_HOST'),
+            port='5432'
+        )
+    except Exception as e:
+        log.error(e)
+    
+    return connection
 
 def parse_fichier(contents, filename):
         """
@@ -92,6 +100,7 @@ def parse_fichier(contents, filename):
             log.error(e)
         return df_table.to_dict('records'), df.columns, content_string
 
+
 def update_metadata(filename,contenu,date,sql):
     """
     fonction mettant à jour la table précisé dans la base de donnée
@@ -100,28 +109,17 @@ def update_metadata(filename,contenu,date,sql):
     :param table: nom de la table
     :return: None
     """
-    try:
-        # connection à la base de donnée
-        log.info('connection avec le serveur postgres')
-        conn = psycopg2.connect(
-            database=os.getenv('DB_DATABASE'),
-            user=os.getenv('DB_USER'),
-            password=os.getenv('DB_PASSWORD'),
-            host=os.getenv('DB_HOST'),
-            port='5432'
-        )
-    except Exception as e:
-        log.error(e)
-    cursor = conn.cursor()
+    resultat = connection_à_la_base_de_donnée()
+    cursor = resultat.cursor()
     values = (date,filename,contenu)
     log.info('lancement du query')
     cursor.execute(sql,values)
     log.info('Arret du curseur de la base de donnée')
     cursor.close()
     log.info('query commité')
-    conn.commit()
+    resultat.commit()
     log.info('ferméture de la connexion à la base de donnée')
-    conn.close()
+    resultat.close()
 
 
 log.info('lancement du callback pour la gestion du data table')

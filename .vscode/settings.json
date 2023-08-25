@@ -1,0 +1,11 @@
+{
+
+    "editor.rulers": [
+        80,
+        120
+    ],
+    "cSpell.language": "en",
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "hashicorp.hcl",
+    "cSpell.enabled": true
+}

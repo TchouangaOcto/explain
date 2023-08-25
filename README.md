@@ -12,3 +12,8 @@ docker_compose.yml: fichier contenant l'infrastructure de déploiement du projet
 requirements.txt : contient les différents librairie pour propre fonctionement de l'applicaiton
 
 explanable : contient tous ce qui concern le backend et le frontend de l'applciation
+
+# important docker commands for composing services
+
+- docker compose down #to destroy all what has been created
+- docker-compose up --build #to buid up from scratch 

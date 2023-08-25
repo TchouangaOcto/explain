@@ -71,7 +71,8 @@ app.layout = html.Div([
             dcc.Upload(id='modèle', children=html.Div([dbc.Button('charger le modèle',
                                                                    style=btn_style,
                                                                    size='lg', className="btn",
-                                                                   id='modèle_button', n_clicks=0),], ))]), style=div_btn_style),
+                                                                   id='modèle_button', n_clicks=0),], ))]), \
+                                                                    style=div_btn_style),
 
         # icon info pour le chargement des fichiers modèle
         html.Div(children=[html.I(className="bi bi-info-circle-fill me-2", id="info_modèle"),
@@ -83,7 +84,8 @@ app.layout = html.Div([
 
         # dropdown pour l'explanabilté
         html.Div(children=[
-                    dcc.Dropdown(outils_xai,multi=True,placeholder="outil", searchable=False, id='Explanabilité_methdode')
+                    dcc.Dropdown(outils_xai,multi=True,placeholder="outil", searchable=False, \
+                                 id='Explanabilité_methdode')
                 ],style=div_dropdown_style2, className="custom-dropdown"),
 
         # checkbox pour l'interprétabilité
@@ -91,7 +93,8 @@ app.layout = html.Div([
 
         # dropdown pour les méthodes d'interprétabilité
         html.Div(children=[
-            dcc.Dropdown(outils_xai,multi=True,placeholder="outil", searchable=False, id='Interprétabilité_methdode',className="custom-dropdown")
+            dcc.Dropdown(outils_xai,multi=True,placeholder="outil", searchable=False, id='Interprétabilité_methdode',\
+                         className="custom-dropdown")
         ], style=div_dropdown_style2),
 
         # dropdown pour le choix de la variable à prédire
@@ -127,13 +130,15 @@ app.layout = html.Div([
         id='confirm-danger',
         message="n'oublie pas de choisir la  méthode voulu",
     ),
+
     # Tab content
     html.Div(id="tab_content"),
 
     # button chargent les données historiques
     html.Div(children=[
             dbc.Button('utilisation des données historique', style=btn_style,
-                        size='lg', className="btn", id='btn_donnée_historique', n_clicks=0), ], style=div_btn_historique_style),
+                        size='lg', className="btn", id='btn_donnée_historique', n_clicks=0), ], \
+                            style=div_btn_historique_style),
 
     # icon info pour le chargement des fichiers de données historiques
     html.Div(children=[html.I(className="bi bi-info-circle-fill me-2", id="info_historique", style={'float':'right'}),
@@ -202,7 +207,7 @@ def render_content(contenu_dropdown_variable_explicatif,tab,contenu_donnée,cont
     # battery of test here
     global state #
     global status_explicatif # vérifie si les colonnes du jeu de donnée ont été correctement chargé
-    try:
+    try: 
         log.info(f'valeur dropdown explicatif: {contenu_dropdown_variable_explicatif}')
         if status_explicatif and contenu_dropdown_variable_explicatif is not None: # # vérifie si les colonnes du jeu de donnée ont été correctement chargé
             log.info('variable explicatives chargé avec success')

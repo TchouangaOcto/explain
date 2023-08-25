@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "4ops.terraform",
+        "hashicorp.terraform",
+        "hashicorp.hcl",
+        "esbenp.prettier-vscode",
+        "streetsidesoftware.code-spell-checker",
+    ]
+}
