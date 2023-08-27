@@ -46,7 +46,7 @@ def parse_fichier(contents, filename): # fichier pkl juste pris en charge
             # pour les fichiers de type pkl
             log.info('le fichier à un format pickle')
             try:
-                model = pd.read_pickle(io.BytesIO(decoded))
+                model = pd.read_pickle(io.BytesIO(decoded)) # to implement joblib we need to review the code
             except Exception as e:
                 log.info('something went wrong with model loading')
                 log.error(e)
@@ -84,6 +84,17 @@ def connection_à_la_base_de_donnée():
         
 
 def excution_de_la_requète_de_la_base_de_donnée(objet_de_connection,requete,valeurs_de_la_requete):
+    """
+    fonction permetant d'exécuté une requete sur une base de donnée à partir 
+    d'un objet de connexion à cette base de donnée
+
+    :param objet_de_connection: objet de connection à la base de donnée [objet]
+    :param requete: requete SQL sur la base de donnée [string]
+    :param valeurs_de_la_requete: valeurs à insérer dans la requete pour la 
+    base de donnée
+
+    return: None
+    """
 
     curseur_de_la_base_donnée = objet_de_connection.cursor()
 

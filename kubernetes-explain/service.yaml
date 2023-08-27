@@ -1,12 +1,4 @@
-metadata:
-  name: postgres-service
-  namespace: my-namespace
-  labels:
-    app: postgres
-
-
 apiVersion: v1
-
 kind: Service
 metadata:
   name: explain-app-service

@@ -17,3 +17,8 @@ explanable : contient tous ce qui concern le backend et le frontend de l'applcia
 
 - docker compose down #to destroy all what has been created
 - docker-compose up --build #to buid up from scratch 
+
+note: the terraform part of the project is still lacking (this depends on how the resources are managed)
+need for preconfiguration of every resource from gcp
+code refactor and proper organization, see how to manage resource constraints, use of kubernetes 
+for container management of containers going down (use of replicas)
