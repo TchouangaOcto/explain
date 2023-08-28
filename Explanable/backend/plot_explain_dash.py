@@ -176,11 +176,11 @@ def figure_explicatif_du_module_chargé(module, variable_explicatif_du_jeu_de_do
 
     :return: resultat [string] (une requete sql)
     """
-    predict_profile = module.predict_profile(variable_explicatif_du_jeu_de_donnée).\
-        update_traces(marker=dict(color="#89D9D7"), hoverlabel=dict(bgcolor="#F79034"),selector=dict(type="line"))
-    predict_profile = predict_profile.update_layout(font=dict(color='#013E50'))
+    # predict_profile = module.predict_profile(variable_explicatif_du_jeu_de_donnée).\
+    #    update_traces(marker=dict(color="#89D9D7"), hoverlabel=dict(bgcolor="#F79034"),selector=dict(type="line"))
+    # predict_profile = predict_profile.update_layout(font=dict(color='#013E50'))
     
-    log.info('construction du graphique predict profile')
+    #log.info('construction du graphique predict profile')
 
     variable_importance = module.feature_importance().update_traces(marker=dict(color="#89D9D7"),\
                                                                     hoverlabel=dict(bgcolor= "#F79034"),\
@@ -189,7 +189,7 @@ def figure_explicatif_du_module_chargé(module, variable_explicatif_du_jeu_de_do
 
     log.info('construction du graphique variable importance')
 
-    return predict_profile, variable_importance
+    return None, variable_importance
 
 @app.callback(
     Output('graph_globale1', 'children'),
@@ -236,4 +236,4 @@ def update_card(checkbox_valeur,dropdown_valeur,variable_predire, variable_expli
             
             resultat1, resultat2 = figure_explicatif_du_module_chargé(resultat, variable_explicatif)
 
-            return dcc.Graph(figure=resultat1), dcc.Graph(figure=resultat2)
+            return dcc.Graph(figure=resultat2), no_update
