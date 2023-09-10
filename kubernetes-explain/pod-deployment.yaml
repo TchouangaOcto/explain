@@ -1,0 +1,13 @@
+apiVersion: v1
+
+kind: pod
+
+metadata: 
+  name:
+  labels:
+    app: explain
+
+spec:
+  containers:
+    name: explain-container
+    image: franck123/explain:explainApp

@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-namespace: explain
+  namespace: explain
   name: dash-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: explain-app
@@ -16,6 +16,7 @@ spec:
       containers:
       - name: explain-app
         image: franck123/explain:explainApp
+        args: ['python', 'app.py']
         ports:
         - containerPort: 8050
         env:
@@ -23,7 +24,7 @@ spec:
           value: "postgresql://postgres:0000@postgres-service:5432/postgres"
 
 metadata:
-namespace: explain
+  namespace: explain
   name: postgres
 spec:
   replicas: 1
@@ -50,6 +51,7 @@ spec:
                 name: postgres-secret
                 key: POSTGRES_USER
         - name: POSTGRES_PASSWORD
+          valueFrom:
               secretKeyRef:
                 name: postgres-secret 
                 key: POSTGRES_PASSWORD
