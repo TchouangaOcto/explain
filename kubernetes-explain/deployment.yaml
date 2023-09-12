@@ -14,6 +14,7 @@ spec:
         app: explain-app
     spec:
       containers:
+      #app container
       - name: explain-app
         image: franck123/explain:explainApp
         args: ['python', 'app.py']
@@ -23,20 +24,7 @@ spec:
         - name: DATABASE_URL
           value: "postgresql://postgres:0000@postgres-service:5432/postgres"
 
-metadata:
-  namespace: explain
-  name: postgres
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: postgres
-  template:
-    metadata:
-      labels:
-        app: postgres
-    spec:
-      containers:
+      #database container
       - name: postgres
         image: postgres:latest
         env:
