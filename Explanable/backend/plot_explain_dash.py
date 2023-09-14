@@ -72,11 +72,11 @@ def connection_à_la_base_de_donnée():
     try:
         # connection à la base de donnée
         log.info('connection avec le serveur postgres')
-        connection = psycopg2.connect(
-            database=os.getenv('DB_DATABASE'),
-            user=os.getenv('DB_USER'),
-            password=os.getenv('DB_PASSWORD'),
-            host=os.getenv('DB_HOST'),
+        connection= psycopg2.connect(
+            database=os.getenv('POSTGRES_DB'),
+            user=os.getenv('POSTGRES_USER'),
+            password=os.getenv('POSTGRES_PASSWORD'), 
+            host=os.getenv('POSTGRES_HOST'),
             port='5432'
         )
     except Exception as e:

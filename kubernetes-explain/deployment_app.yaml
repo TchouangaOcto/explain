@@ -15,15 +15,15 @@ spec:
     spec:
       containers:
       - name: explain-app
-        image: franck123/webexplain:latest
+        image: franck123/webexplain:2
         args: ['python', 'app.py']
         ports:
-        - containerPort: 8050
+        - containerPort: 80
         env:
          #- name: DATABASE_URL
          # value: "postgresql://postgres:0000@postgres-service:5432/postgres"
          - name: POSTGRES_HOST
-           value: postgres
+           value: postgres-service
 
          - name: POSTGRES_PORT
            value: "5432"
